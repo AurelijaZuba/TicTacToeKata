@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class TicTacToeGameShould {
 
@@ -45,5 +46,18 @@ public class TicTacToeGameShould {
         assertThat(boardState).isEqualTo(expectedBoardState);
     }
 
+    @Test
+    void not_allow_positions_to_be_played_twice() {
+        assertThrows(IllegalMoveException.class, () -> {
+            final PlayerMove firstMove = new PlayerMove("0,2", "X");
+            final PlayerMove secondMove = new PlayerMove("0,2", "O");
 
+            game.position(firstMove);
+            BoardState boardState = game.position(secondMove);
+
+            BoardState expectedBoardState = new BoardState();
+            expectedBoardState.placeMarker(firstMove);
+            expectedBoardState.placeMarker(secondMove);
+        });
+    }
 }
