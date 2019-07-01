@@ -33,6 +33,8 @@ public class TicTacToeGame {
     }
 
     public GameStatus status() {
+        if(boardState.emptyBoard())
+            return GameStatus.START_OF_GAME;
         return GameStatus.DRAW;
     }
 }
