@@ -4,12 +4,15 @@ public class TicTacToeGame {
 
 
     private final BoardState boardState;
+    private Player player;
 
     public TicTacToeGame() {
         boardState = new BoardState();
+        player = Player.X;
     }
 
     public BoardState position(String player, String position) {
+        this.player.valueOf(player);
 
         boardState.placeMarker(position, player);
 
@@ -17,6 +20,9 @@ public class TicTacToeGame {
     }
 
     public Player nextPlayer() {
-        return null;
+        if(player == Player.X)
+            return Player.O;
+
+        return Player.X;
     }
 }
