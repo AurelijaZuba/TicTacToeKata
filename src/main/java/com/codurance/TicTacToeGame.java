@@ -35,6 +35,9 @@ public class TicTacToeGame {
     public GameStatus status() {
         if(boardState.emptyBoard())
             return GameStatus.START_OF_GAME;
+        if(!boardState.emptyBoard() && boardState.numberOfMoves() != 9)
+            return GameStatus.IN_PLAY;
+
         return GameStatus.DRAW;
     }
 }

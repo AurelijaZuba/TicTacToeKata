@@ -57,4 +57,7 @@ public class BoardState {
         return Objects.hash(boardState);
     }
 
+    public int numberOfMoves() {
+        return boardState.size();
+    }
 }
