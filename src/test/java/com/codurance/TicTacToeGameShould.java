@@ -100,9 +100,11 @@ public class TicTacToeGameShould {
 
 
     @Test
-    void show_status_as_IN_PLAY_while_in_the_middle_of_the_game() {
+    void show_status_as_IN_PLAY_while_in_the_middle_of_the_game() throws IllegalMoveException {
+        final PlayerMove firstMove = new PlayerMove(new Position(0,2), Player.X);
         GameStatus expectedGameStatus = GameStatus.IN_PLAY;
 
+        BoardState boardState = game.position(firstMove);
         GameStatus actualGameStatus = game.status();
 
         assertThat(actualGameStatus).isEqualTo(expectedGameStatus);
