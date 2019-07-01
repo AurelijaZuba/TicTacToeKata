@@ -15,4 +15,8 @@ public class TicTacToeGame {
 
         return boardState;
     }
+
+    public Player nextPlayer() {
+        return null;
+    }
 }
