@@ -1,12 +1,17 @@
 package com.codurance;
 
-import java.util.HashMap;
-
 public class TicTacToeGame {
-    public HashMap position(String player, String position) {
-        HashMap boardState = new HashMap();
 
-        boardState.put(position, player);
+
+    private final BoardState boardState;
+
+    public TicTacToeGame() {
+        boardState = new BoardState();
+    }
+
+    public BoardState position(String player, String position) {
+
+        boardState.placeMarker(position, player);
 
         return boardState;
     }

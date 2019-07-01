@@ -11,10 +11,10 @@ public class TicTacToeGameShould {
     @Test
     void allow_first_player_X_to_mark_any_position() {
         TicTacToeGame game = new TicTacToeGame();
-        HashMap gameState = game.position("X", "0,2");
+        BoardState gameState = game.position("X", "0,2");
 
-        HashMap expected = new HashMap();
-        expected.put("0,2", "X");
+        BoardState expected = new BoardState();
+        expected.placeMarker("0,2", "X");
 
         assertThat(gameState).isEqualTo(expected);
     }
