@@ -31,8 +31,4 @@ public class BoardState {
     public int hashCode() {
         return Objects.hash(boardState);
     }
-
-    public boolean emptyBoard() {
-        return boardState.isEmpty();
-    }
 }

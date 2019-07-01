@@ -1,14 +1,21 @@
 package com.codurance;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class TicTacToeGameShould {
 
+    private TicTacToeGame game;
+
+    @BeforeEach
+    void setUp() {
+        game = new TicTacToeGame();
+    }
+
     @Test
     void check_that_X_plays_first() {
-        TicTacToeGame game = new TicTacToeGame();
         Player expectedPlayer = Player.X;
 
         Player playerToPlay = game.nextPlayer();
