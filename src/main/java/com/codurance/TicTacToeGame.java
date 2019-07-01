@@ -1,18 +1,16 @@
 package com.codurance;
 
 public class TicTacToeGame {
-
-
     private final BoardState boardState;
-    private Player player;
+    private Player currentPlayer;
 
     public TicTacToeGame() {
         boardState = new BoardState();
-        player = Player.X;
+        currentPlayer = Player.X;
     }
 
-    public BoardState position(String player, String position) {
-        this.player.valueOf(player);
+    public BoardState position(String position, String player) {
+        currentPlayer.valueOf(player);
 
         boardState.placeMarker(position, player);
 
@@ -20,7 +18,7 @@ public class TicTacToeGame {
     }
 
     public Player nextPlayer() {
-        if(player == Player.X)
+        if(currentPlayer == Player.X)
             return Player.O;
 
         return Player.X;
