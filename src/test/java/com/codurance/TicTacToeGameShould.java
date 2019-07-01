@@ -97,4 +97,14 @@ public class TicTacToeGameShould {
 
         assertThat(actualGameStatus).isEqualTo(expectedGameStatus);
     }
+
+
+    @Test
+    void show_status_as_IN_PLAY_while_in_the_middle_of_the_game() {
+        GameStatus expectedGameStatus = GameStatus.IN_PLAY;
+
+        GameStatus actualGameStatus = game.status();
+
+        assertThat(actualGameStatus).isEqualTo(expectedGameStatus);
+    }
 }
