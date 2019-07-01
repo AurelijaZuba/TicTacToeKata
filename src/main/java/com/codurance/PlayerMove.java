@@ -1,19 +1,19 @@
 package com.codurance;
 
 public class PlayerMove {
-    private final String position;
-    private final String player;
+    private final Position position;
+    private final Player player;
 
-    public PlayerMove(String position, String player) {
+    public PlayerMove(Position position, Player player) {
         this.position = position;
         this.player = player;
     }
 
-    public String getPosition() {
+    public Position getPosition() {
         return position;
     }
 
-    public String getPlayer() {
+    public Player getPlayer() {
         return player;
     }
 }

@@ -10,7 +10,7 @@ public class TicTacToeGame {
     }
 
     public BoardState position(PlayerMove playerMove) throws IllegalMoveException {
-        currentPlayer.valueOf(playerMove.getPlayer());
+        currentPlayer = playerMove.getPlayer();
 
         if(!boardState.isLegalMove(playerMove)){
             throw new IllegalMoveException();
@@ -30,6 +30,5 @@ public class TicTacToeGame {
         }
 
         return Player.O;
-
     }
 }

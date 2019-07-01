@@ -27,9 +27,9 @@ public class TicTacToeGameShould {
     @Test
     void check_that_O_plays_after_X() throws IllegalMoveException {
         Player expectedPlayer = Player.O;
-        final PlayerMove playerMove = new PlayerMove("0,2", "X");
+        final PlayerMove playerMove = new PlayerMove(new Position(0,2), Player.X);
 
-        BoardState boardState = game.position(playerMove);
+        BoardState boardState = game.position(playerMove );
         Player playerToPlay = game.nextPlayer();
 
         assertThat(playerToPlay).isEqualTo(expectedPlayer);
@@ -37,7 +37,7 @@ public class TicTacToeGameShould {
 
     @Test
     void allow_first_player_X_to_mark_any_position() throws IllegalMoveException {
-        final PlayerMove playerMove = new PlayerMove("0,2", "X");
+        final PlayerMove playerMove = new PlayerMove(new Position(0,2), Player.X);
         BoardState boardState = game.position(playerMove);
 
         BoardState expectedBoardState = new BoardState();
@@ -49,8 +49,8 @@ public class TicTacToeGameShould {
     @Test
     void not_allow_positions_to_be_played_twice() {
         assertThrows(IllegalMoveException.class, () -> {
-            final PlayerMove firstMove = new PlayerMove("0,2", "X");
-            final PlayerMove secondMove = new PlayerMove("0,2", "O");
+            final PlayerMove firstMove = new PlayerMove(new Position(0,2), Player.X);
+            final PlayerMove secondMove = new PlayerMove(new Position(0,2), Player.O);
 
             game.position(firstMove);
             BoardState boardState = game.position(secondMove);

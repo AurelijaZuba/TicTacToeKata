@@ -25,12 +25,23 @@ public class BoardState {
         return true;
     }
 
-    private boolean positionHasBeenPlayed(String position) {
-        for (PlayerMove move: boardState ) {
-            if(move.getPosition().equals(position))
-                return true;
+    private boolean positionHasBeenPlayed(Position position) {
+       boolean hasBeenPlayed = false;
+
+        for (Position move: getPlayedPositions()) {
+            hasBeenPlayed = move.equals(position);
         }
-        return false;
+        return hasBeenPlayed;
+    }
+
+    private List<Position> getPlayedPositions() {
+        List<Position> positionsPlayed = new ArrayList();
+
+        for(PlayerMove move : boardState) {
+            Position position = move.getPosition();
+            positionsPlayed.add(position);
+        }
+        return positionsPlayed;
     }
 
     @Override
