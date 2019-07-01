@@ -60,4 +60,34 @@ public class TicTacToeGameShould {
             expectedBoardState.placeMarker(secondMove);
         });
     }
+
+    @Test
+    void finish_the_game_if_its_a_draw() throws IllegalMoveException {
+        final PlayerMove firstMove = new PlayerMove(new Position(0,2), Player.X);
+        final PlayerMove secondMove = new PlayerMove(new Position(2,0), Player.O);
+        final PlayerMove thirdMove = new PlayerMove(new Position(0,0), Player.X);
+        final PlayerMove fourthMove = new PlayerMove(new Position(0,1), Player.O);
+        final PlayerMove fifthMove = new PlayerMove(new Position(1,1), Player.X);
+        final PlayerMove sixthMove = new PlayerMove(new Position(2,2), Player.O);
+        final PlayerMove seventhMove = new PlayerMove(new Position(2,1), Player.X);
+        final PlayerMove eithMove = new PlayerMove(new Position(1,2), Player.O);
+        final PlayerMove ninthMove = new PlayerMove(new Position(1,0), Player.X);
+
+
+        game.position(firstMove);
+        game.position(secondMove);
+        game.position(thirdMove);
+        game.position(fourthMove);
+        game.position(fifthMove);
+        game.position(sixthMove);
+        game.position(seventhMove);
+        game.position(eithMove);
+        BoardState boardState =  game.position(ninthMove);
+
+
+        GameStatus gameStatus = GameStatus.DRAW;
+        assertThat(boardState).isEqualTo(gameStatus);
+
+
+    }
 }
