@@ -9,9 +9,12 @@ public class TicTacToeGame {
         currentPlayer = Player.X;
     }
 
-    public BoardState position(PlayerMove playerMove) {
+    public BoardState position(PlayerMove playerMove) throws IllegalMoveException {
         currentPlayer.valueOf(playerMove.getPlayer());
 
+        if(!boardState.isLegalMove(playerMove)){
+            throw new IllegalMoveException();
+        }
         boardState.placeMarker(playerMove);
 
         return boardState;

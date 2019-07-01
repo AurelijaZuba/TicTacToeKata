@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class BoardState {
-    private final List boardState;
+    private final List<PlayerMove> boardState ;
 
     public BoardState() {
         boardState = new ArrayList();
@@ -17,6 +17,20 @@ public class BoardState {
 
     public boolean emptyBoard() {
         return boardState.isEmpty();
+    }
+
+    boolean isLegalMove(PlayerMove playerMove) {
+        if(positionHasBeenPlayed(playerMove.getPosition()))
+            return false;
+        return true;
+    }
+
+    private boolean positionHasBeenPlayed(String position) {
+        for (PlayerMove move: boardState ) {
+            if(move.getPosition().equals(position))
+                return true;
+        }
+        return false;
     }
 
     @Override
@@ -31,4 +45,5 @@ public class BoardState {
     public int hashCode() {
         return Objects.hash(boardState);
     }
+
 }

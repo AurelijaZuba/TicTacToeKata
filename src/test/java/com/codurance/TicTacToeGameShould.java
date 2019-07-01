@@ -25,7 +25,7 @@ public class TicTacToeGameShould {
     }
 
     @Test
-    void check_that_O_plays_after_X() {
+    void check_that_O_plays_after_X() throws IllegalMoveException {
         Player expectedPlayer = Player.O;
         final PlayerMove playerMove = new PlayerMove("0,2", "X");
 
@@ -36,7 +36,7 @@ public class TicTacToeGameShould {
     }
 
     @Test
-    void allow_first_player_X_to_mark_any_position() {
+    void allow_first_player_X_to_mark_any_position() throws IllegalMoveException {
         final PlayerMove playerMove = new PlayerMove("0,2", "X");
         BoardState boardState = game.position(playerMove);
 
