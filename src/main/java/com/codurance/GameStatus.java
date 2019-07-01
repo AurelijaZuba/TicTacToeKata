@@ -1,5 +1,5 @@
 package com.codurance;
 
 public enum GameStatus {
-    DRAW
+    START_OF_GAME, DRAW
 }

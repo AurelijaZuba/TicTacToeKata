@@ -31,4 +31,8 @@ public class TicTacToeGame {
 
         return Player.O;
     }
+
+    public GameStatus status() {
+        return GameStatus.DRAW;
+    }
 }

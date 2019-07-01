@@ -72,6 +72,7 @@ public class TicTacToeGameShould {
         final PlayerMove seventhMove = new PlayerMove(new Position(2,1), Player.X);
         final PlayerMove eithMove = new PlayerMove(new Position(1,2), Player.O);
         final PlayerMove ninthMove = new PlayerMove(new Position(1,0), Player.X);
+        GameStatus expectedGameStatus = GameStatus.DRAW;
 
 
         game.position(firstMove);
@@ -83,11 +84,17 @@ public class TicTacToeGameShould {
         game.position(seventhMove);
         game.position(eithMove);
         BoardState boardState =  game.position(ninthMove);
+        GameStatus actualGameStatus = game.status();
 
+        assertThat(actualGameStatus).isEqualTo(expectedGameStatus);
+    }
 
-        GameStatus gameStatus = GameStatus.DRAW;
-        assertThat(boardState).isEqualTo(gameStatus);
+    @Test
+    void show_status_as_START_OF_GAME_when_a_new_game_is_started() {
+        GameStatus expectedGameStatus = GameStatus.START_OF_GAME;
 
+        GameStatus actualGameStatus = game.status();
 
+        assertThat(actualGameStatus).isEqualTo(expectedGameStatus);
     }
 }
