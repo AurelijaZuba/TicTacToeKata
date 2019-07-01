@@ -1,17 +1,22 @@
 package com.codurance;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class BoardState {
-    private final HashMap boardState;
+    private final List boardState;
 
     public BoardState() {
-        boardState = new HashMap();
+        boardState = new ArrayList();
     }
 
-    public void placeMarker(String position, String player) {
-        boardState.put(position, player);
+    public void placeMarker(PlayerMove playerMove) {
+        boardState.add(playerMove);
+    }
+
+    public boolean emptyBoard() {
+        return boardState.isEmpty();
     }
 
     @Override

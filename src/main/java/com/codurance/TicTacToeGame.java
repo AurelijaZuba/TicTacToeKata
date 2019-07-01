@@ -9,10 +9,10 @@ public class TicTacToeGame {
         currentPlayer = Player.X;
     }
 
-    public BoardState position(String position, String player) {
-        currentPlayer.valueOf(player);
+    public BoardState position(PlayerMove playerMove) {
+        currentPlayer.valueOf(playerMove.getPlayer());
 
-        boardState.placeMarker(position, player);
+        boardState.placeMarker(playerMove);
 
         return boardState;
     }
