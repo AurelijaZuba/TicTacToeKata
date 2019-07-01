@@ -18,7 +18,7 @@ public class TicTacToeGame {
     }
 
     public Player nextPlayer() {
-        if(currentPlayer == Player.X)
+        if(!boardState.emptyBoard() && currentPlayer == Player.X)
             return Player.O;
 
         return Player.X;
