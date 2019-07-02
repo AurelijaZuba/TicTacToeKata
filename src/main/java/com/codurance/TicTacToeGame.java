@@ -56,9 +56,6 @@ public class TicTacToeGame {
 
     private boolean gameHasBeenWon() {
         boolean hasWon = false;
-//        Player playerMove1 = boardState.checkPlaceMarker(new Position(0,0));
-//        Player playerMove2 = boardState.checkPlaceMarker(new Position(0,1));
-//        Player playerMove3 = boardState.checkPlaceMarker(new Position(0,2));
 
         for (WinCondition winCondition : winConditions) {
             Player playerMove1 = boardState.checkPlaceMarker(winCondition.getPosition1());
@@ -74,10 +71,6 @@ public class TicTacToeGame {
 
         return hasWon;
 
-//        if(areMovesNull(playerMove1, playerMove2, playerMove3))
-//            return false;
-//
-//        return playerMove1 == playerMove2 && playerMove2 == playerMove3;
     }
 
     private boolean areMovesNull(Player playerMove1, Player playerMove2, Player playerMove3) {
