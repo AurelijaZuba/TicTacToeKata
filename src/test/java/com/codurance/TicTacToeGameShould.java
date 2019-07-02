@@ -140,11 +140,19 @@ public class TicTacToeGameShould {
                 new PlayerMove(new Position(0,1), Player.O),
                 new PlayerMove(new Position(2,2), Player.X)
         );
+        List<PlayerMove> horizontalBottomMoves = asList(
+                new PlayerMove(new Position(0,0), Player.X),
+                new PlayerMove(new Position(0,1), Player.O),
+                new PlayerMove(new Position(1,0), Player.X),
+                new PlayerMove(new Position(1,1), Player.O),
+                new PlayerMove(new Position(2,0), Player.X)
+        );
 
         return Stream.of(
                 Arguments.of(verticalLeftMoves),
                 Arguments.of(verticalMiddleMoves),
-                Arguments.of(verticalRightMoves)
+                Arguments.of(verticalRightMoves),
+                Arguments.of(horizontalBottomMoves)
         );
     }
 
