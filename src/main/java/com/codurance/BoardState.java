@@ -19,6 +19,19 @@ public class BoardState {
         return boardState.isEmpty();
     }
 
+    public int numberOfMoves() {
+        return boardState.size();
+    }
+
+    public Player checkPlaceMarker(Position position) {
+        for (PlayerMove playerMove : boardState) {
+           if(playerMove.getPosition().equals(position)){
+               return playerMove.getPlayer();
+            }
+        }
+        return null;
+    }
+
     boolean isLegalMove(PlayerMove playerMove) {
         if(positionHasBeenPlayed(playerMove.getPosition()))
             return false;
@@ -55,19 +68,5 @@ public class BoardState {
     @Override
     public int hashCode() {
         return Objects.hash(boardState);
-    }
-
-    public int numberOfMoves() {
-        return boardState.size();
-    }
-
-    public Player checkPlaceMarker(Position position) {
-        Player result = null;
-        for (PlayerMove playerMove : boardState) {
-           if(playerMove.getPosition().equals(position)){
-               result = playerMove.getPlayer();
-            }
-        }
-        return result;
     }
 }
