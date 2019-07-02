@@ -2,7 +2,15 @@ package com.codurance;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Stream;
+
+import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -110,64 +118,46 @@ public class TicTacToeGameShould {
         assertThat(actualGameStatus).isEqualTo(expectedGameStatus);
     }
 
-    @Test
-    void show_status_WON_when_three_in_a_row_vertical_left() throws IllegalMoveException {
+    private static Stream<Arguments> winningStatesProvider(){
+        List<PlayerMove> verticalLeftMoves = asList(
+                new PlayerMove(new Position(0,0), Player.X),
+                new PlayerMove(new Position(1,0), Player.O),
+                new PlayerMove(new Position(0,1), Player.X),
+                new PlayerMove(new Position(1,1), Player.O),
+                new PlayerMove(new Position(0,2), Player.X)
+        );
+        List<PlayerMove> verticalMiddleMoves = asList(
+                new PlayerMove(new Position(1,0), Player.X),
+                new PlayerMove(new Position(0,0), Player.O),
+                new PlayerMove(new Position(1,1), Player.X),
+                new PlayerMove(new Position(0,1), Player.O),
+                new PlayerMove(new Position(1,2), Player.X)
+        );
+        List<PlayerMove> verticalRightMoves = asList(
+                new PlayerMove(new Position(2,0), Player.X),
+                new PlayerMove(new Position(0,0), Player.O),
+                new PlayerMove(new Position(2,1), Player.X),
+                new PlayerMove(new Position(0,1), Player.O),
+                new PlayerMove(new Position(2,2), Player.X)
+        );
+
+        return Stream.of(
+                Arguments.of(verticalLeftMoves),
+                Arguments.of(verticalMiddleMoves),
+                Arguments.of(verticalRightMoves)
+        );
+    }
+
+    @ParameterizedTest
+    @MethodSource("winningStatesProvider")
+    void show_status_WON_when_three_in_a_row(List<PlayerMove> moves) throws IllegalMoveException {
         GameStatus expectedGameStatus = GameStatus.WON;
 
-        final PlayerMove firstMove = new PlayerMove(new Position(0,0), Player.X);
-        final PlayerMove secondMove = new PlayerMove(new Position(1,0), Player.O);
-        final PlayerMove thirdMove = new PlayerMove(new Position(0,1), Player.X);
-        final PlayerMove fourthMove = new PlayerMove(new Position(1,1), Player.O);
-        final PlayerMove fifthMove = new PlayerMove(new Position(0,2), Player.X);
-
-        game.position(firstMove);
-        game.position(secondMove);
-        game.position(thirdMove);
-        game.position(fourthMove);
-        game.position(fifthMove);
+        for (PlayerMove move : moves) {
+            game.position(move);
+        }
         GameStatus actualGameStatus = game.status();
 
         assertThat(actualGameStatus).isEqualTo(expectedGameStatus);
     }
-
-    @Test
-    void show_status_WON_when_three_in_a_row_vertical_middle() throws IllegalMoveException {
-        GameStatus expectedGameStatus = GameStatus.WON;
-
-        final PlayerMove firstMove = new PlayerMove(new Position(1,0), Player.X);
-        final PlayerMove secondMove = new PlayerMove(new Position(0,0), Player.O);
-        final PlayerMove thirdMove = new PlayerMove(new Position(1,1), Player.X);
-        final PlayerMove fourthMove = new PlayerMove(new Position(0,1), Player.O);
-        final PlayerMove fifthMove = new PlayerMove(new Position(1,2), Player.X);
-
-        game.position(firstMove);
-        game.position(secondMove);
-        game.position(thirdMove);
-        game.position(fourthMove);
-        game.position(fifthMove);
-        GameStatus actualGameStatus = game.status();
-
-        assertThat(actualGameStatus).isEqualTo(expectedGameStatus);
-    }
-
-    @Test
-    void show_status_WON_when_three_in_a_row_vertical_right() throws IllegalMoveException {
-        GameStatus expectedGameStatus = GameStatus.WON;
-
-        final PlayerMove firstMove = new PlayerMove(new Position(2,0), Player.X);
-        final PlayerMove secondMove = new PlayerMove(new Position(0,0), Player.O);
-        final PlayerMove thirdMove = new PlayerMove(new Position(2,1), Player.X);
-        final PlayerMove fourthMove = new PlayerMove(new Position(0,1), Player.O);
-        final PlayerMove fifthMove = new PlayerMove(new Position(2,2), Player.X);
-
-        game.position(firstMove);
-        game.position(secondMove);
-        game.position(thirdMove);
-        game.position(fourthMove);
-        game.position(fifthMove);
-        GameStatus actualGameStatus = game.status();
-
-        assertThat(actualGameStatus).isEqualTo(expectedGameStatus);
-    }
-
 }
