@@ -61,11 +61,11 @@ public class BoardState {
         return boardState.size();
     }
 
-    public PlayerMove checkPlaceMarker(Position position) {
-        PlayerMove result = null;
+    public Player checkPlaceMarker(Position position) {
+        Player result = null;
         for (PlayerMove playerMove : boardState) {
            if(playerMove.getPosition().equals(position)){
-               result = playerMove;
+               result = playerMove.getPlayer();
             }
         }
         return result;
