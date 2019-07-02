@@ -60,4 +60,14 @@ public class BoardState {
     public int numberOfMoves() {
         return boardState.size();
     }
+
+    public PlayerMove checkPlaceMarker(Position position) {
+        PlayerMove result = null;
+        for (PlayerMove playerMove : boardState) {
+           if(playerMove.getPosition().equals(position)){
+               result = playerMove;
+            }
+        }
+        return result;
+    }
 }

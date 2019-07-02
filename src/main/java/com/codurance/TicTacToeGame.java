@@ -47,8 +47,14 @@ public class TicTacToeGame {
     }
 
     private boolean gameHasBeenWon() {
+        PlayerMove playerMove1 = boardState.checkPlaceMarker(new Position(0,0));
+        PlayerMove playerMove2 = boardState.checkPlaceMarker(new Position(0,1));
+        PlayerMove playerMove3 = boardState.checkPlaceMarker(new Position(0,2));
 
+        if(playerMove1 == null || playerMove2 == null || playerMove3 == null)
+            return false;
 
-        return false;
+        return playerMove1.getPlayer() == playerMove2.getPlayer()
+                && playerMove2.getPlayer() == playerMove3.getPlayer();
     }
 }
