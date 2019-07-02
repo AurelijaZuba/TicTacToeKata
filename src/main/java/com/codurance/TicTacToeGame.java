@@ -21,6 +21,7 @@ public class TicTacToeGame {
         winConditions.add(new WinCondition(new Position(2,0), new Position(2,1), new Position(2,2)));
         winConditions.add(new WinCondition(new Position(0,0), new Position(1,0), new Position(2,0)));
         winConditions.add(new WinCondition(new Position(0,1), new Position(1,1), new Position(2,1)));
+        winConditions.add(new WinCondition(new Position(0,2), new Position(1,2), new Position(2,2)));
     }
 
     public BoardState position(PlayerMove playerMove) throws IllegalMoveException {
