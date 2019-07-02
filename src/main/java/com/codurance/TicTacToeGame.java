@@ -74,8 +74,7 @@ public class TicTacToeGame {
             return hasWon;
         }
 
-        hasWon = playerMove1 == playerMove2 && playerMove2 == playerMove3;
-        return hasWon;
+        return playerMove1 == playerMove2 && playerMove2 == playerMove3;
     }
 
     private boolean areMovesNull(Player playerMove1, Player playerMove2, Player playerMove3) {
