@@ -45,15 +45,11 @@ public class TicTacToeGame {
     }
 
     private boolean gameHasBeenWon() {
-        boolean hasWon = false;
-
         WinConditionMap winConditionMap = new WinConditionMap(boardState);
         for (WinCondition winCondition : winConditionMap.winConditions) {
-            hasWon = winConditionMap.winConditionHasBeenMet(hasWon, winCondition);
+            if (winConditionMap.winConditionHasBeenMet(winCondition))
+                return true;
         }
-
-        return hasWon;
-
+        return false;
     }
-
 }

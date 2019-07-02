@@ -24,13 +24,13 @@ public class WinConditionMap {
         winConditions.add(new WinCondition(new Position(2, 2), new Position(1, 1), new Position(0, 0)));
     }
 
-    boolean winConditionHasBeenMet(boolean hasWon, WinCondition winCondition) {
+    boolean winConditionHasBeenMet(WinCondition winCondition) {
         Player playerMove1 = boardState.checkPlaceMarker(winCondition.getPosition1());
         Player playerMove2 = boardState.checkPlaceMarker(winCondition.getPosition2());
         Player playerMove3 = boardState.checkPlaceMarker(winCondition.getPosition3());
 
         if(areMovesNull(playerMove1, playerMove2, playerMove3)) {
-            return hasWon;
+            return false;
         }
 
         return playerMove1 == playerMove2 && playerMove2 == playerMove3;
