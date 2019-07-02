@@ -129,4 +129,24 @@ public class TicTacToeGameShould {
 
         assertThat(actualGameStatus).isEqualTo(expectedGameStatus);
     }
+
+    @Test
+    void show_status_WON_when_three_in_a_row_vertical_middle() throws IllegalMoveException {
+        GameStatus expectedGameStatus = GameStatus.WON;
+
+        final PlayerMove firstMove = new PlayerMove(new Position(1,0), Player.X);
+        final PlayerMove secondMove = new PlayerMove(new Position(0,0), Player.O);
+        final PlayerMove thirdMove = new PlayerMove(new Position(1,1), Player.X);
+        final PlayerMove fourthMove = new PlayerMove(new Position(0,1), Player.O);
+        final PlayerMove fifthMove = new PlayerMove(new Position(1,2), Player.X);
+
+        game.position(firstMove);
+        game.position(secondMove);
+        game.position(thirdMove);
+        game.position(fourthMove);
+        game.position(fifthMove);
+        GameStatus actualGameStatus = game.status();
+
+        assertThat(actualGameStatus).isEqualTo(expectedGameStatus);
+    }
 }
