@@ -6,10 +6,18 @@ import java.util.List;
 public class TicTacToeGame {
     private final BoardState boardState;
     private Player currentPlayer;
+    private List<WinCondition> winConditions;
 
     public TicTacToeGame() {
         boardState = new BoardState();
         currentPlayer = Player.X;
+        initialiseWins();
+    }
+
+    private void initialiseWins() {
+        winConditions = new ArrayList<>();
+        winConditions.add(new WinCondition(new Position(0,0), new Position(0,1), new Position(0,2)));
+        winConditions.add(new WinCondition(new Position(1,0), new Position(1,1), new Position(1,2)));
     }
 
     public BoardState position(PlayerMove playerMove) throws IllegalMoveException {
@@ -47,14 +55,29 @@ public class TicTacToeGame {
     }
 
     private boolean gameHasBeenWon() {
-        Player playerMove1 = boardState.checkPlaceMarker(new Position(0,0));
-        Player playerMove2 = boardState.checkPlaceMarker(new Position(0,1));
-        Player playerMove3 = boardState.checkPlaceMarker(new Position(0,2));
+        boolean hasWon = false;
+//        Player playerMove1 = boardState.checkPlaceMarker(new Position(0,0));
+//        Player playerMove2 = boardState.checkPlaceMarker(new Position(0,1));
+//        Player playerMove3 = boardState.checkPlaceMarker(new Position(0,2));
 
-        if(areMovesNull(playerMove1, playerMove2, playerMove3))
-            return false;
+        for (WinCondition winCondition : winConditions) {
+            Player playerMove1 = boardState.checkPlaceMarker(winCondition.getPosition1());
+            Player playerMove2 = boardState.checkPlaceMarker(winCondition.getPosition2());
+            Player playerMove3 = boardState.checkPlaceMarker(winCondition.getPosition3());
 
-        return playerMove1 == playerMove2 && playerMove2 == playerMove3;
+            if(areMovesNull(playerMove1, playerMove2, playerMove3)) {
+                continue;
+            }
+
+            hasWon = playerMove1 == playerMove2 && playerMove2 == playerMove3;
+        }
+
+        return hasWon;
+
+//        if(areMovesNull(playerMove1, playerMove2, playerMove3))
+//            return false;
+//
+//        return playerMove1 == playerMove2 && playerMove2 == playerMove3;
     }
 
     private boolean areMovesNull(Player playerMove1, Player playerMove2, Player playerMove3) {
