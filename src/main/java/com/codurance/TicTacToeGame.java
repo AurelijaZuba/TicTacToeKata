@@ -58,19 +58,24 @@ public class TicTacToeGame {
         boolean hasWon = false;
 
         for (WinCondition winCondition : winConditions) {
-            Player playerMove1 = boardState.checkPlaceMarker(winCondition.getPosition1());
-            Player playerMove2 = boardState.checkPlaceMarker(winCondition.getPosition2());
-            Player playerMove3 = boardState.checkPlaceMarker(winCondition.getPosition3());
-
-            if(areMovesNull(playerMove1, playerMove2, playerMove3)) {
-                continue;
-            }
-
-            hasWon = playerMove1 == playerMove2 && playerMove2 == playerMove3;
+            hasWon = winConditionHasBeenMet(hasWon, winCondition);
         }
 
         return hasWon;
 
+    }
+
+    private boolean winConditionHasBeenMet(boolean hasWon, WinCondition winCondition) {
+        Player playerMove1 = boardState.checkPlaceMarker(winCondition.getPosition1());
+        Player playerMove2 = boardState.checkPlaceMarker(winCondition.getPosition2());
+        Player playerMove3 = boardState.checkPlaceMarker(winCondition.getPosition3());
+
+        if(areMovesNull(playerMove1, playerMove2, playerMove3)) {
+            return hasWon;
+        }
+
+        hasWon = playerMove1 == playerMove2 && playerMove2 == playerMove3;
+        return hasWon;
     }
 
     private boolean areMovesNull(Player playerMove1, Player playerMove2, Player playerMove3) {
